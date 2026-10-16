@@ -1,0 +1,4 @@
+asset_id,portfolio_id,region,asset_type,construction_year,sum_insured_dkk
+AST-1,PF-A,Hovedstaden,residential,1990,2000000.0
+AST-2,PF-A,Nordjylland,commercial,2005,5000000.0
+AST-3,PF-B,Hovedstaden,commercial,1975,3000000.0

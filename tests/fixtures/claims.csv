@@ -1,0 +1,11 @@
+claim_id,policy_id,loss_date,reported_date,paid_amount,reserve_amount,currency,status
+CLM-1,POL-1,2023-05-10,2023-05-12,400.0,0.0,DKK,settled
+CLM-2,POL-1,10-06-2023,15-06-2023,50.0,70.0,DKK,settled
+CLM-3,POL-2,2023-07-01,2023-07-02,300.0,200.0,DKK,open
+CLM-4,POL-3,2024-02-15,2024-02-16,10.0,0.0,EUR,settled
+CLM-5,POL-4,2023-07-20,2023-07-21,20.0,0.0,EUR,settled
+CLM-6,POL-4,2023-08-01,2023-08-02,0.0,0.0,DKK,declined
+CLM-7,POL-5,2023-04-01,2023-04-02,0.0,0.0,DKK,withdrawn
+CLM-8,POL-999,2023-05-01,2023-05-02,999.0,0.0,DKK,settled
+CLM-9,POL-1,2023-09-01,2023-09-02,-30.0,0.0,DKK,settled
+CLM-10,POL-5,2023-01-15,2023-01-16,60.0,0.0,DKK,settled
