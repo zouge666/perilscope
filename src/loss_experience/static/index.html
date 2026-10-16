@@ -7,6 +7,8 @@
   <style>
     body { font-family: system-ui, sans-serif; max-width: 56rem; margin: 2rem auto; padding: 0 1rem; color: #222; }
     label { margin-right: 1.5rem; }
+    button { margin-top: 1rem; }
+    pre { background: #f4f4f4; padding: 0.75rem; overflow-x: auto; }
     table { border-collapse: collapse; width: 100%; margin-top: 1.5rem; }
     th, td { padding: 0.4rem 0.6rem; border-bottom: 1px solid #ddd; text-align: right; }
     th:first-child, td:first-child { text-align: left; }
@@ -29,6 +31,11 @@
     </select>
   </label>
 
+  <div>
+    <button id="curl-button" type="button">Show curl command</button>
+  </div>
+  <pre id="curl" hidden></pre>
+
   <p id="message"></p>
   <table id="result" hidden>
     <thead>
@@ -43,9 +50,12 @@
   <script>
     const portfolioSelect = document.getElementById("portfolio");
     const yearSelect = document.getElementById("year");
+    const curlButton = document.getElementById("curl-button");
+    const curlBox = document.getElementById("curl");
     const message = document.getElementById("message");
     const table = document.getElementById("result");
     const body = table.querySelector("tbody");
+    let lastUrl = "";
 
     function money(value) {
       return value.toLocaleString(undefined, { maximumFractionDigits: 0 });
@@ -56,6 +66,11 @@
         return "-";
       }
       return (ratio * 100).toFixed(1) + "%";
+    }
+
+    // The curl command for the numbers on the page right now.
+    function showCurl() {
+      curlBox.textContent = 'curl "' + window.location.origin + lastUrl + '"';
     }
 
     function addRow(name, row, className) {
@@ -89,7 +104,10 @@
       if (yearSelect.value) {
         params.set("underwriting_year", yearSelect.value);
       }
-      const url = "/portfolios/" + portfolioSelect.value + "/loss-experience?" + params;
+      const query = params.toString();
+      const url = "/portfolios/" + portfolioSelect.value + "/loss-experience" + (query ? "?" + query : "");
+      lastUrl = url;
+      showCurl();
       const response = await fetch(url);
       if (!response.ok) {
         table.hidden = true;
@@ -117,6 +135,10 @@
       }
       portfolioSelect.addEventListener("change", show);
       yearSelect.addEventListener("change", show);
+      curlButton.addEventListener("click", () => {
+        curlBox.hidden = !curlBox.hidden;
+        curlButton.textContent = curlBox.hidden ? "Show curl command" : "Hide curl command";
+      });
       show();
     }
 

@@ -97,3 +97,9 @@ def test_home_page_has_a_portfolio_picker(client):
     response = client.get("/")
     assert response.status_code == 200
     assert "<select" in response.text
+
+
+def test_home_page_can_show_the_curl_command(client):
+    response = client.get("/")
+    assert 'id="curl-button"' in response.text
+    assert 'id="curl"' in response.text
