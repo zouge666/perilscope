@@ -19,6 +19,7 @@ The real data is in `data/`. It is not in git. The tests use the small files in 
 - `src/loss_experience/fx.py` turns money into DKK.
 - `src/loss_experience/loss.py` has the loss rules and the sums.
 - `src/loss_experience/quality.py` builds the data quality report.
+- `src/loss_experience/static/index.html` is the simple page. The api serves it at `/`.
 - `src/loss_experience/api.py` has the web routes. `main.py` starts the app.
 - `docs/LOSS_RULES.md` says how each number is made and how bad data is handled.
 
