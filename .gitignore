@@ -1,0 +1,19 @@
+# Exercise data: supplied separately, must not be committed (see README)
+/data/
+envira-loss-data.zip
+
+# OS
+.DS_Store
+
+# Secrets and local state
+.env
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
