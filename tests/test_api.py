@@ -91,3 +91,9 @@ def test_unknown_region_gives_400(client):
     response = client.get("/portfolios/PF-A/loss-experience", params={"region": "Mars"})
     assert response.status_code == 400
     assert "Mars" in response.json()["detail"]
+
+
+def test_home_page_has_a_portfolio_picker(client):
+    response = client.get("/")
+    assert response.status_code == 200
+    assert "<select" in response.text

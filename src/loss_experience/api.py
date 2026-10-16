@@ -1,4 +1,7 @@
+from pathlib import Path
+
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
 
 from loss_experience.cleaning import load_data
 from loss_experience.loss import (
@@ -10,6 +13,8 @@ from loss_experience.loss import (
 )
 from loss_experience.quality import data_quality
 
+PAGE = Path(__file__).parent / "static" / "index.html"
+
 
 def check_value(name, value, known):
     if value is not None and value not in known:
@@ -19,6 +24,10 @@ def check_value(name, value, known):
 def create_app(data_dir):
     data = load_data(data_dir)
     app = FastAPI(title="Loss experience")
+
+    @app.get("/", include_in_schema=False)
+    def home():
+        return FileResponse(PAGE)
 
     @app.get("/portfolios/loss-experience")
     def compare(
